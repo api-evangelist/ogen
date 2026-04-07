@@ -22,9 +22,9 @@ apis:
     humanURL: https://ogen.dev
     tags:
       - SDKs
-  - Code Generation
-  - Go
-  - OpenAPI
+      - Code Generation
+      - Go
+      - OpenAPI
     properties:
       - type: Documentation
         url: https://ogen.dev/docs/intro
