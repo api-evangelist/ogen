@@ -28,16 +28,16 @@ apis:
     properties:
       - type: Documentation
         url: https://ogen.dev/docs/intro
-      - type: Getting Started
+      - type: GettingStarted
         url: https://ogen.dev/docs/intro
-      - type: GitHub Repository
+      - type: GitHubRepository
         url: https://github.com/ogen-go/ogen
 common:
   - type: Website
     url: https://ogen.dev
   - type: Documentation
     url: https://ogen.dev/docs/intro
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/ogen-go/ogen
 maintainers:
   - FN: Kin Lane
