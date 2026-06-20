@@ -3,7 +3,7 @@ name: Ogen
 description: >-
   Ogen is a high-performance Go code generator that produces type-safe HTTP clients and servers from OpenAPI v3 specifications with validation, middleware, and observability built in.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Code Generation
   - Go
