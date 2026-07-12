@@ -33,6 +33,8 @@ apis:
       - type: GitHubRepository
         url: https://github.com/ogen-go/ogen
 common:
+  - type: DomainSecurity
+    url: security/ogen-domain-security.yml
   - type: Website
     url: https://ogen.dev
   - type: Documentation
