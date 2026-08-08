@@ -1,42 +1,65 @@
 aid: ogen
 name: Ogen
 description: >-
-  Ogen is a high-performance Go code generator that produces type-safe HTTP clients and servers from OpenAPI v3 specifications with validation, middleware, and observability built in.
+  Ogen is an Apache-2.0 OpenAPI v3 code generator for Go, maintained by the
+  ogen-go organization. It reads an OpenAPI v3 document at build time and emits
+  a statically typed Go client and server: code-generated JSON encoding with no
+  reflection or interface{}, code-generated validators, a static radix router,
+  sum types for oneOf with name, type and value discrimination, Opt/Nil/OptNil
+  wrappers instead of pointers, a typed SecuritySource interface, webhook client
+  and server generation, Server-Sent Events client generation, and OpenTelemetry
+  tracing and metrics. Behaviour is steered by a YAML config file with a
+  published JSON Schema and by a twelve-term registry of x-ogen-* specification
+  extensions. Ogen operates no hosted API of its own — it is distributed as a Go
+  module, a pinned go.mod tool dependency, and a distroless container image.
 type: Index
 accessModel:
-  pricing: freemium
-  onboarding: unknown
+  pricing: open-source
+  onboarding: self-service
   trial: false
-  try_now: false
-  public: false
-  label: Freemium
-  confidence: medium
+  try_now: true
+  public: true
+  label: Open Source (Apache-2.0)
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+    - https://github.com/ogen-go/ogen/blob/main/LICENSE
+    - https://ogen.dev/docs/intro
+  generated: '2026-08-06'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ogen.png
 tags:
   - Code Generation
   - Go
   - OpenAPI
   - SDKs
+  - Developer Tools
+  - Open Source
+  - JSON Schema
+  - Client Libraries
+  - API Design
+  - OpenTelemetry
 url: >-
   https://raw.githubusercontent.com/api-evangelist/ogen/refs/heads/main/apis.yml
 created: '2026-03-25'
-modified: '2026-04-28'
+modified: '2026-08-06'
 specificationVersion: '0.19'
 apis:
   - aid: ogen:ogen
     name: Ogen
     description: >-
-      Ogen is a high-performance Go code generator that produces type-safe HTTP clients and servers from OpenAPI v3 specifications with validation, middleware, and observability built in.
+      The ogen code generator. Invoked as a build-time CLI against a local
+      OpenAPI v3 document — `ogen [options] <spec>` — it writes a Go package
+      containing a typed client, server, router, validators and JSON codecs.
+      There is no hosted endpoint, no authentication and no base URL; the
+      machine-readable contract is the published JSON Schema for the .ogen.yml
+      configuration file.
     humanURL: https://ogen.dev
     tags:
       - Code Generation
       - Go
       - OpenAPI
       - SDKs
+      - Developer Tools
     properties:
       - type: Documentation
         url: https://ogen.dev/docs/intro
@@ -44,15 +67,64 @@ apis:
         url: https://ogen.dev/docs/intro
       - type: GitHubRepository
         url: https://github.com/ogen-go/ogen
+      - type: JSONSchema
+        url: json-schema/ogen-config.jsonschema.json
+      - type: CLI
+        url: cli/ogen-cli.yml
 common:
-  - type: DomainSecurity
-    url: security/ogen-domain-security.yml
   - type: Website
+    url: https://ogen.dev
+  - type: DeveloperPortal
     url: https://ogen.dev
   - type: Documentation
     url: https://ogen.dev/docs/intro
+  - type: APIReference
+    url: https://pkg.go.dev/github.com/ogen-go/ogen
+  - type: GettingStarted
+    url: https://ogen.dev/docs/intro
   - type: GitHubOrganization
+    url: https://github.com/ogen-go
+  - type: SourceCode
     url: https://github.com/ogen-go/ogen
+  - type: License
+    url: https://github.com/ogen-go/ogen/blob/main/LICENSE
+  - type: Support
+    url: https://github.com/ogen-go/ogen/discussions
+  - type: Community
+    url: https://t.me/ogen_dev
+  - type: JSONSchema
+    url: json-schema/ogen-config.jsonschema.json
+  - type: Packages
+    url: packages/ogen-packages.yml
+  - type: SDKs
+    url: packages/ogen-packages.yml
+  - type: CLI
+    url: cli/ogen-cli.yml
+  - type: Sandbox
+    url: sandbox/ogen-sandbox.yml
+  - type: Vocabulary
+    url: vocabulary/ogen-extensions.yml
+  - type: Conformance
+    url: conformance/ogen-conformance.yml
+  - type: ChangeLog
+    url: changelog/ogen-changelog.yml
+  - type: Lifecycle
+    url: lifecycle/ogen-lifecycle.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: LLMsTxt
+    url: llms/ogen-llms.txt
+  - type: VulnerabilityDisclosure
+    url: security/ogen-vulnerability-disclosure.yml
+  - type: Security
+    url: https://github.com/ogen-go/ogen/blob/main/SECURITY.md
+  - type: DomainSecurity
+    url: security/ogen-domain-security.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 14
+  pass: local-v1
