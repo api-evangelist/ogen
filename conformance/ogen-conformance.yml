@@ -1,0 +1,114 @@
+generated: '2026-08-06'
+method: searched
+source: https://ogen.dev/docs/features
+notes: >-
+  ogen is a consumer and implementer of API specifications rather than a
+  provider of an API. Conformance here means "which specifications does the
+  generator read, honour and emit code for", evidenced from the project's own
+  docs and source. No compliance program, certification or audit is published —
+  no Compliance pointer is wired.
+standards:
+  - id: openapi-3.0
+    conforms: true
+    level: full
+    evidence: >-
+      README and site describe ogen as "OpenAPI v3 Code Generator for Go";
+      repository topics include openapi3; docs generate CI clients for the
+      GitHub, Kubernetes, OpenAI, Telegram Bot and Firecracker specs.
+    source: https://github.com/ogen-go/ogen
+  - id: openapi-3.1
+    conforms: true
+    level: partial
+    evidence: >-
+      The spec object model in spec.go is documented against
+      spec.openapis.org/oas/v3.1.0 and the version parser accepts 3.x. 3.1
+      nullable-via-type-array support landed (issues #1617, #1708) with a known
+      open gap for type arrays (#1619).
+    source: https://github.com/ogen-go/ogen/blob/main/spec.go
+  - id: openapi-specification-extensions
+    conforms: true
+    level: full
+    evidence: >-
+      Implements the x- patterned-field extension mechanism and publishes its
+      own registry of x-ogen-* / x-oapi-codegen-extra-tags terms.
+    source: https://ogen.dev/docs/spec/extensions
+    artifact: vocabulary/ogen-extensions.yml
+  - id: json-schema-draft-07
+    conforms: true
+    level: full
+    evidence: >-
+      The published ogen configuration schema declares
+      $schema http://json-schema.org/draft-07/schema#.
+    source: https://raw.githubusercontent.com/ogen-go/ogen/main/schemas/ogen.jsonschema.json
+    artifact: json-schema/ogen-config.jsonschema.json
+  - id: json-schema-2020-12
+    conforms: true
+    level: partial
+    evidence: >-
+      Sibling project ogen-go/schemacompiler compiles JSON Schema Draft 2020-12
+      into an analyzed plan for Go code generation; ogen ships a jsonschema
+      package and a jschemagen command.
+    source: https://github.com/ogen-go/schemacompiler
+  - id: json-schema-const
+    conforms: true
+    level: full
+    evidence: >-
+      "Support for the JSON Schema const keyword. Const values are encoded
+      directly without runtime lookups. Works with allOf schema merging."
+    source: https://ogen.dev/docs/features
+  - id: w3c-server-sent-events
+    conforms: true
+    level: partial
+    evidence: >-
+      SSE client generation for text/event-stream; generated client exposes an
+      event iterator with configurable automatic reconnection. Client side only.
+    source: https://ogen.dev/docs/features
+  - id: opentelemetry
+    conforms: true
+    level: full
+    evidence: >-
+      ogen/otel is in the default feature set; the otelogen package emits
+      tracing and metrics instrumentation into generated clients and servers.
+    source: https://ogen.dev/docs/features
+  - id: iana-http-authschemes
+    conforms: true
+    level: full
+    evidence: >-
+      parser.authentication_schemes defaults to the IANA HTTP Authentication
+      Scheme Registry when the list is left empty.
+    source: json-schema/ogen-config.jsonschema.json
+  - id: rfc3339-duration
+    conforms: false
+    level: none
+    evidence: >-
+      Documented incompatibility: ogen maps `duration` to Go time.Duration,
+      whereas JSON Schema defines it as an RFC 3339 duration.
+    source: https://ogen.dev/docs/features
+  - id: protobuf
+    conforms: true
+    level: adjacent
+    evidence: >-
+      Sibling project ogen-go/protoc-gen-oas generates OpenAPI v3 from protobuf.
+      ogen itself publishes no .proto service definition.
+    source: https://github.com/ogen-go/protoc-gen-oas
+  - id: oauth2
+    conforms: false
+    level: n/a
+    evidence: >-
+      ogen generates a typed SecuritySource interface from a spec's declared
+      security schemes; it operates no authorization server of its own.
+compliance_program:
+  published: false
+  certifications: []
+  notes: >-
+    Apache-2.0 open-source project with no SOC 2 / ISO 27001 / PCI / HIPAA /
+    FedRAMP posture published. Do not credit a Compliance pointer.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://ogen.dev/docs/features
+      http_status: 200
+    - url: https://ogen.dev/docs/spec/extensions
+      http_status: 200
+    - url: https://raw.githubusercontent.com/ogen-go/ogen/main/schemas/ogen.jsonschema.json
+      http_status: 200

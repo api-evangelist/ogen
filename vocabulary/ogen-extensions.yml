@@ -1,0 +1,126 @@
+generated: '2026-08-06'
+method: searched
+source: https://ogen.dev/docs/spec/extensions
+sources:
+  - https://ogen.dev/docs/spec/extensions
+  - https://github.com/ogen-go/ogen/blob/main/jsonschema/parser.go
+  - https://github.com/ogen-go/ogen/blob/main/openapi/parser/parse_mediatype.go
+  - https://github.com/ogen-go/ogen/blob/main/openapi/parser/parse_path_item.go
+  - https://github.com/ogen-go/ogen/blob/main/openapi/parser/parse_parameter.go
+  - https://github.com/ogen-go/ogen/blob/main/openapi/parser/parse_security.go
+name: ogen OpenAPI specification extensions
+description: >-
+  The registry of `x-` specification-extension terms ogen reads out of an
+  OpenAPI v3 document to steer Go code generation. Six are documented on
+  ogen.dev; the remaining six were read directly from the parser sources, which
+  is the authoritative list. Each term is a patterned field per the OpenAPI
+  Specification Extensions mechanism, so a document carrying them stays valid
+  for other tooling.
+prefix: x-ogen-
+foreign_prefix: x-oapi-codegen-
+term_count: 12
+terms:
+  - term: x-ogen-server-name
+    applies_to: Server Object (servers[])
+    type: string
+    documented: true
+    docs: https://ogen.dev/docs/spec/extensions#server-name
+    description: >-
+      Names a server entry so the generator emits a typed server URL builder
+      (e.g. ProductionServer) with validated template variables and enum checks.
+  - term: x-ogen-name
+    applies_to: Schema Object; Parameter Object
+    type: string
+    documented: true
+    docs: https://ogen.dev/docs/spec/extensions#custom-type-name
+    description: >-
+      Overrides the generated Go type name for a schema, or the generated
+      parameter name. Must be a valid exported Go identifier.
+    added: v1.18.0 (parameter naming)
+  - term: x-ogen-properties
+    applies_to: Schema Object
+    type: object
+    documented: true
+    docs: https://ogen.dev/docs/spec/extensions#custom-field-name
+    description: >-
+      Per-property overrides for generated struct field names, keyed by the
+      JSON property name (e.g. parent -> name: Prev). The JSON tag keeps the
+      original wire name.
+  - term: x-oapi-codegen-extra-tags
+    applies_to: Schema Object (property)
+    type: object
+    documented: true
+    docs: https://ogen.dev/docs/spec/extensions#extra-struct-field-tags
+    description: >-
+      Extra Go struct field tags emitted on the generated field (gorm, valid,
+      db, ...). Named for cross-tool compatibility with oapi-codegen rather
+      than under the x-ogen- prefix.
+  - term: x-ogen-json-streaming
+    applies_to: Media Type Object
+    type: boolean
+    documented: true
+    docs: https://ogen.dev/docs/spec/extensions#streaming-json-encoding
+    description: >-
+      Decode the body as a stream instead of loading the entire JSON payload
+      into memory first.
+  - term: x-ogen-operation-group
+    applies_to: Path Item Object; Operation Object
+    type: string
+    documented: true
+    docs: https://ogen.dev/docs/spec/extensions#operation-groups
+    description: >-
+      Groups operations so a separate handler interface is generated per group.
+      Set on a path item or on an individual operation.
+  - term: x-ogen-type
+    applies_to: Schema Object
+    type: string
+    documented: false
+    source: jsonschema/parser.go
+    description: Substitutes a custom Go type for the generated schema type.
+  - term: x-ogen-time-format
+    applies_to: Schema Object (string with a time format)
+    type: string
+    documented: false
+    source: jsonschema/parser.go
+    description: Overrides the layout used to encode and decode a time value.
+  - term: x-ogen-validate
+    applies_to: Schema Object
+    type: object
+    documented: false
+    source: jsonschema/parser.go
+    description: >-
+      Custom validation directives applied to the generated validator for a
+      schema.
+  - term: x-ogen-raw-response
+    applies_to: Media Type Object
+    type: boolean
+    documented: false
+    source: openapi/parser/parse_mediatype.go
+    description: >-
+      Hands the response body through raw rather than generating a decoder.
+      Takes precedence over x-ogen-sse-event-shape.
+  - term: x-ogen-sse-event-shape
+    applies_to: Media Type Object (text/event-stream)
+    type: string
+    documented: false
+    source: openapi/parser/parse_mediatype.go
+    description: >-
+      Selects the Server-Sent Events event shape used by the generated SSE
+      client iterator. Ignored when x-ogen-raw-response is set.
+  - term: x-ogen-custom-security
+    applies_to: Security Scheme Object
+    type: boolean
+    documented: false
+    source: openapi/parser/parse_security.go
+    description: >-
+      Marks a security scheme as custom so the generated SecuritySource
+      interface delegates to caller-supplied handling.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://ogen.dev/docs/spec/extensions
+      http_status: 200
+    - url: https://api.github.com/repos/ogen-go/ogen/contents/jsonschema/parser.go
+      http_status: 200
+    - url: https://api.github.com/repos/ogen-go/ogen/contents/openapi/parser/parse_mediatype.go
+      http_status: 200

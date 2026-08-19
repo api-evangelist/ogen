@@ -1,0 +1,55 @@
+generated: '2026-08-06'
+method: searched
+source: https://ogen.dev/docs/validator
+name: ogen OpenAPI validator
+kind: browser-playground
+url: https://ogen.dev/docs/validator
+credentials_required: false
+signup_required: false
+description: >-
+  A first-party, no-signup playground on the docs site. It runs the real ogen
+  parser and IR builder compiled to WebAssembly — the same pipeline the code
+  generator uses — so the verdict reflects what ogen would actually accept.
+  Paste or edit an OpenAPI v3 document, press Validate, and errors come back
+  with source locations in the same form the ogen CLI prints them.
+implementation:
+  runtime: webassembly
+  command: github.com/ogen-go/ogen/cmd/ogen-wasm
+  execution: client-side
+  data_handling: >-
+    The site states everything runs locally in the browser and the document is
+    never uploaded.
+limitations:
+  - >-
+    Scope is schema validity. Operations ogen cannot yet generate are ignored —
+    equivalent to generator.ignore_not_implemented ["all"] — so a valid result
+    does not guarantee every operation is supported.
+test_fixtures:
+  - name: petstore.yml
+    url: https://raw.githubusercontent.com/ogen-go/web/main/examples/petstore.yml
+    description: >-
+      The documented starter spec used by the getting-started guide; the same
+      document works as validator input.
+  - name: real-world spec corpus
+    url: https://github.com/ogen-go/ogen/tree/main/examples
+    description: >-
+      Specs ogen regenerates in CI — GitHub (api.github.com.json), Kubernetes
+      (k8s.json), OpenAI (openai.openapi.yaml), Telegram Bot API
+      (telegram_bot_api.json), Firecracker (firecracker.json) and Petstore
+      expanded (petstore-expanded.yml).
+  - name: sample project
+    url: https://github.com/ogen-go/example
+    description: >-
+      Complete runnable client + server + OpenTelemetry project to try the
+      generated output end to end.
+notes: >-
+  ogen operates no hosted API, so there is no test/live key separation, no test
+  card or magic-identifier surface, and no test clock. The validator plus the
+  runnable example project are the full try-before-you-integrate surface.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://ogen.dev/docs/validator
+      http_status: 200
+    - url: https://github.com/ogen-go/example
+      http_status: 200

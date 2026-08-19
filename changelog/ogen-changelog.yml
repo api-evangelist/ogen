@@ -1,0 +1,90 @@
+generated: '2026-08-06'
+method: searched
+source: https://github.com/ogen-go/ogen/releases
+format: github-releases
+scheme: semver
+notes: >-
+  ogen publishes no standalone changelog page. GitHub Releases is the changelog:
+  each tag carries auto-generated release notes assembled by
+  .github/release.yml, with a compare link to the previous tag. Recent window
+  only — the release feed is the source of truth.
+current:
+  version: v1.23.0
+  released: '2026-07-10'
+  source: https://proxy.golang.org/github.com/ogen-go/ogen/@latest
+  note: >-
+    v1.23.0 is present in the Go module proxy and in the ghcr.io tag list; the
+    GitHub Releases feed had not yet surfaced a notes body for it at capture
+    time.
+stability: stable
+stability_source: https://go-faster.org/docs/projects/status#stable
+entries:
+  - version: v1.22.0
+    date: '2026-06-16'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.22.0
+    breaking: false
+    highlights:
+      - Render Markdown in generated godoc comments.
+      - Merge sibling keywords specified alongside allOf.
+  - version: v1.21.0
+    date: '2026-06-15'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.21.0
+    breaking: false
+    highlights:
+      - Add IsEmpty() to generated OptNil* wrappers.
+      - Fix allOf optional/nullable field boxing.
+      - Dependency bumps across the OpenTelemetry and golang groups.
+  - version: v1.20.3
+    date: '2026-04-07'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.20.3
+    breaking: false
+    highlights:
+      - Narrow the root "ogen" ignore rule.
+  - version: v1.20.2
+    date: '2026-03-27'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.20.2
+    breaking: false
+    highlights:
+      - Preserve schema Ref in the single-element allOf fast path.
+      - Regenerate the published config JSON Schema.
+  - version: v1.20.1
+    date: '2026-02-28'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.20.1
+    breaking: false
+    highlights:
+      - Support JSON-like media types in convenient error generation.
+      - Correctly handle formatted sum variants.
+  - version: v1.20.0
+    date: '2026-02-25'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.20.0
+    breaking: false
+    highlights:
+      - Retain the response body in UnexpectedStatusCodeError.
+      - Fix HasParams for deepObject query parameters with additionalProperties.
+      - Fix a generation crash on the Swagger Petstore spec.
+  - version: v1.19.0
+    date: '2026-02-15'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.19.0
+    breaking: false
+    highlights: []
+  - version: v1.18.0
+    date: '2025-12-01'
+    url: https://github.com/ogen-go/ogen/releases/tag/v1.18.0
+    breaking: false
+    highlights:
+      - Type-based, value-based and array-element oneOf/anyOf discrimination.
+      - Non-primitive enums via sum types.
+      - x-ogen-name extension for parameter naming.
+      - Allow duplicate paths with different HTTP methods.
+release_artifacts:
+  - kind: go-module
+    url: https://pkg.go.dev/github.com/ogen-go/ogen
+  - kind: container
+    url: https://github.com/ogen-go/ogen/pkgs/container/ogen
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://api.github.com/repos/ogen-go/ogen/releases
+      http_status: 200
+    - url: https://github.com/ogen-go/ogen/releases
+      http_status: 200

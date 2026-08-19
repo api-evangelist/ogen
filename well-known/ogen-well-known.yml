@@ -1,0 +1,51 @@
+generated: '2026-08-06'
+method: probed
+source: live GET probes of the ogen.dev host
+host: https://ogen.dev
+result: none
+summary: >-
+  ogen.dev is a static Docusaurus documentation site for an Apache-2.0 Go code
+  generator. It publishes no /.well-known/ discovery surface — every RFC 8615
+  path below returned the site's 404 HTML shell. Recorded so the absence is
+  evidence rather than an untested assumption. No WellKnown or SecurityTxt
+  pointer is wired in apis.yml, because nothing was found.
+documents:
+  - path: /.well-known/security.txt
+    status: 404
+    content_type: text/html
+  - path: /.well-known/openid-configuration
+    status: 404
+    content_type: text/html
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    content_type: text/html
+  - path: /.well-known/api-catalog
+    status: 404
+    content_type: text/html
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    content_type: text/html
+  - path: /.well-known/agent-card.json
+    status: 404
+    content_type: text/html
+  - path: /.well-known/agent.json
+    status: 404
+    content_type: text/html
+also_probed:
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /sitemap.xml
+    status: 200
+    note: Only machine-readable index the site serves; enumerates 19 docs pages.
+security_contact_elsewhere: >-
+  The project's vulnerability reporting channel is GitHub private security
+  advisories, published in SECURITY.md rather than in a security.txt. See
+  security/ogen-vulnerability-disclosure.yml.
+x-evidence:
+  fetched: '2026-08-06'

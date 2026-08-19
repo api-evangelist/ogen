@@ -1,0 +1,80 @@
+generated: '2026-08-06'
+method: searched
+source: https://pkg.go.dev/github.com/ogen-go/ogen
+notes: >-
+  ogen is distributed as a Go module and as a container image. There is no npm,
+  PyPI, Maven, NuGet, RubyGems, Packagist or crates.io package published by the
+  ogen-go organization. An unrelated npm package named "ogen"
+  (github.com/ericelliott/ogen, an async/await utility) exists and is NOT
+  first-party — it is deliberately excluded from this catalog.
+packages:
+  - language: go
+    registry: go-modules
+    name: github.com/ogen-go/ogen
+    url: https://pkg.go.dev/github.com/ogen-go/ogen
+    install: go get github.com/ogen-go/ogen
+    latest_version: v1.23.0
+    latest_released: '2026-07-10'
+    license: Apache-2.0
+    official: true
+    description: >-
+      The ogen library and code generator. Importable as a Go package (parser,
+      jsonschema, IR builder, generator) and used at build time via go:generate.
+  - language: go
+    registry: go-modules
+    name: github.com/ogen-go/ogen/cmd/ogen
+    url: https://pkg.go.dev/github.com/ogen-go/ogen/cmd/ogen
+    install: go get -tool github.com/ogen-go/ogen/cmd/ogen@latest
+    alternate_install: go install -v github.com/ogen-go/ogen/cmd/ogen@latest
+    license: Apache-2.0
+    official: true
+    description: >-
+      The ogen CLI entrypoint. Go 1.24+ records it in the go.mod tool directive
+      so the generator version is pinned for reproducible builds.
+  - language: go
+    registry: go-modules
+    name: github.com/ogen-go/ogen/cmd/jschemagen
+    url: https://pkg.go.dev/github.com/ogen-go/ogen/cmd/jschemagen
+    install: go install github.com/ogen-go/ogen/cmd/jschemagen@latest
+    license: Apache-2.0
+    official: true
+    description: JSON Schema to Go type generator shipped alongside ogen.
+  - language: container
+    registry: ghcr.io
+    name: ghcr.io/ogen-go/ogen
+    url: https://github.com/ogen-go/ogen/pkgs/container/ogen
+    install: >-
+      docker run --rm --volume ".:/workspace" ghcr.io/ogen-go/ogen:latest
+      --target workspace/petstore --clean workspace/petstore.yml
+    license: Apache-2.0
+    official: true
+    base_image: gcr.io/distroless/static-debian13
+    description: >-
+      Distroless container image of the ogen and jschemagen binaries, published
+      per release tag plus latest and main.
+related_modules:
+  - name: github.com/ogen-go/protoc-gen-oas
+    url: https://github.com/ogen-go/protoc-gen-oas
+    official: true
+    description: Generate OpenAPI v3 from protobuf.
+  - name: github.com/ogen-go/ent2ogen
+    url: https://github.com/ogen-go/ent2ogen
+    official: true
+    description: ent schema to ogen bridge.
+  - name: github.com/ogen-go/schemacompiler
+    url: https://github.com/ogen-go/schemacompiler
+    official: true
+    description: >-
+      Compile JSON Schema Draft 2020-12 into an analyzed plan for Go code
+      generation.
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://pkg.go.dev/github.com/ogen-go/ogen
+      http_status: 200
+    - url: https://proxy.golang.org/github.com/ogen-go/ogen/@latest
+      http_status: 200
+    - url: https://ghcr.io/v2/ogen-go/ogen/tags/list
+      http_status: 200
+    - url: https://github.com/ogen-go/ogen/pkgs/container/ogen
+      http_status: 200

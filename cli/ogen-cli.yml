@@ -1,0 +1,144 @@
+generated: '2026-08-06'
+method: searched
+source: https://ogen.dev/docs/intro
+sources:
+  - https://ogen.dev/docs/intro
+  - https://ogen.dev/docs/config
+  - https://github.com/ogen-go/ogen/blob/main/cmd/ogen/main.go
+  - https://github.com/ogen-go/ogen/blob/main/README.md
+name: ogen
+description: >-
+  ogen is a single-command code generator. It takes one OpenAPI v3 document as
+  its positional argument and writes a Go package containing a statically typed
+  client, server, router, validators and JSON codecs. There are no subcommands;
+  behaviour is controlled by flags and by an optional YAML configuration file.
+usage: ogen [options] <spec>
+install:
+  - method: go-tool
+    command: go get -tool github.com/ogen-go/ogen/cmd/ogen@latest
+    notes: Requires Go 1.24+. Records the version in the go.mod tool directive.
+  - method: go-install
+    command: go install -v github.com/ogen-go/ogen/cmd/ogen@latest
+  - method: docker
+    command: >-
+      docker run --rm --volume ".:/workspace" ghcr.io/ogen-go/ogen:latest
+      --target workspace/petstore --clean workspace/petstore.yml
+invocation:
+  - style: go-generate
+    example: //go:generate go tool ogen --target petstore --clean petstore.yml
+    notes: The documented primary invocation path; run with `go generate ./...`.
+  - style: direct
+    example: go tool ogen --config .ogen.yml --target petstore --clean petstore.yml
+flags:
+  - flag: --config
+    type: string
+    default: ''
+    description: Path to the YAML config file (commonly .ogen.yml).
+  - flag: --target
+    type: string
+    default: api
+    description: Path to the target output directory.
+  - flag: --package
+    type: string
+    default: api
+    description: Target Go package name for the generated code.
+  - flag: --clean
+    type: bool
+    default: false
+    description: Clean previously generated files before generation.
+  - flag: --strict
+    type: bool
+    default: false
+    description: >-
+      Disable cross-type constraint interpretation (reject pattern on numbers,
+      min/max on strings).
+  - flag: --initialisms
+    type: string-list
+    repeatable: true
+    description: >-
+      Replace the initialism set with this list (e.g. ID,URL,API), overriding the
+      config file. Include "inherit" to keep the built-in set, or pass an empty
+      value to disable all initialisms.
+  - flag: --initialisms-extra
+    type: string-list
+    repeatable: true
+    description: >-
+      Extra initialisms applied during naming, on top of the active set
+      (e.g. FQDN).
+  - flag: --cpuprofile
+    type: string
+    description: Write a CPU profile to the given file.
+  - flag: --memprofile
+    type: string
+    description: Write a memory profile to the given file.
+  - flag: --memprofilerate
+    type: int
+    default: -1
+    description: If > 0, sets runtime.MemProfileRate.
+  - flag: --version
+    type: bool
+    description: Print the ogen version and exit.
+config_file:
+  path: .ogen.yml
+  format: yaml
+  schema: https://raw.githubusercontent.com/ogen-go/ogen/main/schemas/ogen.jsonschema.json
+  local_schema: json-schema/ogen-config.jsonschema.json
+  reference: https://github.com/ogen-go/ogen/blob/main/examples/config/example_all.yml
+  defaults: https://github.com/ogen-go/ogen/blob/main/examples/config/default_all.yml
+  sections:
+    - name: parser
+      description: Controls how the OpenAPI document is read.
+      keys:
+        - infer_types
+        - allow_remote
+        - depth_limit
+        - authentication_schemes
+    - name: generator
+      description: Controls what code is produced.
+      keys:
+        - features
+        - ignore_not_implemented
+        - filters
+features:
+  mechanism: >-
+    Opt-in/opt-out feature set. Resolution order is: start from the default set
+    (unless disable_all is true), apply disable, then apply enable. Entries in
+    enable always take priority.
+  source: https://github.com/ogen-go/ogen/blob/main/gen/features.go
+  default_enabled:
+    - paths/client
+    - paths/server
+    - webhooks/client
+    - webhooks/server
+    - ogen/otel
+    - ogen/unimplemented
+  all:
+    - paths/client
+    - paths/server
+    - webhooks/client
+    - webhooks/server
+    - client/security/reentrant
+    - client/request/options
+    - client/request/validation
+    - client/editors
+    - server/response/validation
+    - ogen/otel
+    - ogen/unimplemented
+sibling_commands:
+  - name: jschemagen
+    description: Generate Go types from a JSON Schema document.
+    package: github.com/ogen-go/ogen/cmd/jschemagen
+  - name: ogen-wasm
+    description: >-
+      WebAssembly build of the ogen parser and IR builder that powers the
+      in-browser validator at https://ogen.dev/docs/validator.
+    package: github.com/ogen-go/ogen/cmd/ogen-wasm
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://ogen.dev/docs/config
+      http_status: 200
+    - url: https://ogen.dev/docs/intro
+      http_status: 200
+    - url: https://raw.githubusercontent.com/ogen-go/ogen/main/cmd/ogen/main.go
+      http_status: 200

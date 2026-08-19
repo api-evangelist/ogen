@@ -1,0 +1,64 @@
+generated: '2026-08-06'
+method: searched
+source: https://github.com/ogen-go/ogen
+notes: >-
+  ogen is a build-time code generator distributed as a Go module and container
+  image. It operates no hosted service, so there is no status page, no SLA, and
+  no HTTP deprecation/Sunset surface to record. What it does have is a real
+  release lifecycle: semantic versioning through the Go module proxy, a declared
+  stability level, and a documented mechanism for pinning the generator version.
+versioning:
+  scheme: semver
+  current: v1.23.0
+  released: '2026-07-10'
+  distribution: go-modules
+  module_path: github.com/ogen-go/ogen
+  major_version: 1
+  import_compatibility: >-
+    Major version 1 means the module path carries no /vN suffix; a v2 would
+    require a new import path per the Go module compatibility rules.
+  pinning: >-
+    Go 1.24+ `go get -tool github.com/ogen-go/ogen/cmd/ogen@latest` records the
+    generator in the go.mod tool directive, pinning the version so generated
+    code is reproducible across a team and in CI.
+  docs: https://ogen.dev/docs/intro
+stability:
+  level: stable
+  declared_at: https://go-faster.org/docs/projects/status#stable
+  badge_source: https://github.com/ogen-go/ogen/blob/main/README.md
+  first_release: '2021-05-29'
+  active: true
+  last_commit: '2026-08-04'
+support:
+  language_minimum: Go 1.24+ for the tool directive install path
+  channels:
+    - kind: github-issues
+      url: https://github.com/ogen-go/ogen/issues
+    - kind: github-discussions
+      url: https://github.com/ogen-go/ogen/discussions
+    - kind: telegram
+      url: https://t.me/ogen_dev
+      handle: '@ogen_dev'
+  contributing: https://github.com/ogen-go/ogen/blob/main/CONTRIBUTING.md
+  stale_bot: .github/stale.yml
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No written deprecation or support-window policy is published. Generator
+    capability that ogen cannot yet emit is surfaced at build time as a
+    not-implemented error, which a project can opt to skip with
+    generator.ignore_not_implemented — that is an unsupported-feature escape
+    hatch, not a deprecation policy.
+status_page: null
+sla: null
+deprecated_operations: []
+x-evidence:
+  fetched: '2026-08-06'
+  probes:
+    - url: https://proxy.golang.org/github.com/ogen-go/ogen/@latest
+      http_status: 200
+    - url: https://github.com/ogen-go/ogen/discussions
+      http_status: 200
+    - url: https://api.github.com/repos/ogen-go/ogen
+      http_status: 200

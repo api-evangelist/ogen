@@ -1,0 +1,35 @@
+generated: '2026-08-06'
+method: generated
+source: >-
+  cli/ogen-cli.yml, json-schema/ogen-config.jsonschema.json,
+  vocabulary/ogen-extensions.yml, https://ogen.dev/docs
+notes: >-
+  ogen publishes no OpenAPI of its own — it is a build-time code generator. The
+  skills below are therefore grounded in its verified CLI flag surface, its
+  published configuration JSON Schema, and its documented feature and extension
+  registries rather than in operationIds. Every flag, config key, feature name
+  and extension term referenced was read from the project's own docs or source.
+skills:
+  - file: ogen-generate-go-client-server.md
+    name: Generate a Go client and server from an OpenAPI v3 spec with ogen
+    description: >-
+      End-to-end generation flow: pin the tool in go.mod, wire go:generate,
+      configure parser/generator, pick the feature set, implement the handler.
+    api: cli/ogen-cli.yml
+    contract: json-schema/ogen-config.jsonschema.json
+    operations:
+      - ogen --target
+      - ogen --package
+      - ogen --clean
+      - ogen --config
+  - file: ogen-validate-openapi.md
+    name: Validate an OpenAPI v3 document against the ogen parser
+    description: >-
+      Use the browser WASM validator or a throwaway generation run to check a
+      spec, and separate "invalid spec" from "not yet implemented".
+    api: cli/ogen-cli.yml
+    sandbox: sandbox/ogen-sandbox.yml
+    operations:
+      - ogen --strict
+      - ogen --target
+      - ogen --initialisms
