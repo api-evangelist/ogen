@@ -31,6 +31,17 @@ tags:
   - Code Generation
   - Go
   - OpenAPI
+  - SDK
+  - Developer Tools
+  - Open-Source
+  - JSON-Schema
+  - Client Libraries
+  - API Design
+  - OpenTelemetry
+tags_raw:
+  - Code Generation
+  - Go
+  - OpenAPI
   - SDKs
   - Developer Tools
   - Open Source
@@ -55,6 +66,12 @@ apis:
       configuration file.
     humanURL: https://ogen.dev
     tags:
+      - Code Generation
+      - Go
+      - OpenAPI
+      - SDK
+      - Developer Tools
+    tags_raw:
       - Code Generation
       - Go
       - OpenAPI
