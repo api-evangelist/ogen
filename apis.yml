@@ -13,6 +13,17 @@ description: >-
   extensions. Ogen operates no hosted API of its own — it is distributed as a Go
   module, a pinned go.mod tool dependency, and a distroless container image.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: open-source
   onboarding: self-service
@@ -89,6 +100,12 @@ apis:
       - type: CLI
         url: cli/ogen-cli.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/ogen-go/ogen/issues
+  - type: Releases
+    url: https://github.com/ogen-go/ogen/releases
+  - type: ContributionGuide
+    url: https://github.com/ogen-go/ogen/blob/main/CONTRIBUTING.md
   - type: Website
     url: https://ogen.dev
   - type: DeveloperPortal
