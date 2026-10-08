@@ -109,6 +109,12 @@ apis:
       - type: CLI
         url: cli/ogen-cli.yml
 common:
+  - type: Plans
+    url: plans/ogen-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/ogen-rate-limits.yml
+  - type: FinOps
+    url: finops/ogen-finops.yml
   - type: IssueTracker
     url: https://github.com/ogen-go/ogen/issues
   - type: Releases
